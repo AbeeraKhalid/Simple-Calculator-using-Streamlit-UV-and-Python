@@ -1,0 +1,50 @@
+import streamlit as st
+
+def main():
+    # Set page title and configuration
+    st.title("🧮Simple Calculator")
+    st.write("Enter two numbers and choose an operation🔢")
+
+    # Create two columns for number inputs
+    col1, col2 = st.columns(2)
+
+    # Input fields for numbers
+    with col1:
+        num1 = st.number_input("Enter your first number", value=0.0)
+    with col2:
+        num2 = st.number_input("Enter your second number", value=0.0)
+
+    # Operation selection
+    operation = st.selectbox(
+        "Choose operation",
+        ["Addition (+)", "Subtraction (-)", "Multiplication (×)", "Division (÷)"],
+    )
+
+    # Calculate button
+    if st.button("Calculate"):
+        try:
+            if operation == "Addition (+)":
+                result = num1 + num2
+                symbol = "+"
+            elif operation == "Subtraction (-)":
+                result = num1 - num2
+                symbol = "-"
+            elif operation == "Multiplication (×)":
+                result = num1 * num2
+                symbol = "×"
+            else:  # Division
+                if num2 == 0:
+                    st.error("Error: Division by zero!")
+                    return
+                result = num1 / num2
+                symbol = "÷"
+
+            st.success(f"{num1} {symbol} {num2} = {result}")     # Display result with styling
+
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
+
+
+# Run the main function if the script is executed directly
+if __name__ == "__main__":
+    main()
