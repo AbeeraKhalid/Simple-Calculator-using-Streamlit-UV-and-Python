@@ -1,4 +1,5 @@
-import streamlit as st
+# SIMPLE CALCULATOR BY ABEERA KHALID
+import streamlit as st # type: ignore
 
 def main():
     # Set page title and configuration
